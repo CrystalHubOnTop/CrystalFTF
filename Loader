@@ -1,0 +1,23 @@
+if game.PlaceId ~= 893973440 then
+    game.Players.LocalPlayer:Kick("Game unsupported. Join our Discord for support: https://discord.gg/GDMva9YB")
+    return
+end
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "CrystalFTF"
+ScreenGui.Parent = game.CoreGui
+
+local TextLabel = Instance.new("TextLabel")
+TextLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BackgroundTransparency = 0.5
+TextLabel.Size = UDim2.new(0, 300, 0, 50)
+TextLabel.Position = UDim2.new(0.5, -150, 0.5, -25)
+TextLabel.Text = "CrystalFTF Loaded!"
+TextLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
+TextLabel.TextScaled = true
+TextLabel.Parent = ScreenGui
+
+wait(2)
+ScreenGui:Destroy()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CrystalHubOnTop/CrystalFTF/refs/heads/main/ftfhax.txt"))()
