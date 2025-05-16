@@ -1156,8 +1156,76 @@ break
 end
 end
 				
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+function findExitDoor()
+    for _, door in pairs(workspace:GetDescendants()) do
+        if door.Name == "ExitDoor" and door:IsA("Model") then
+            return door
+        end
+    end
+    return nil
+end
+
+function isDoorOpen(door)
+    local hinge = door:FindFirstChild("Hinge")
+    if hinge and hinge:IsA("Motor6D") then
+        return hinge.CurrentAngle > 0.1 -- adjust threshold if needed
+    end
+    return false
+end
+
+function openDoor(door)
+    local clickDetector = door:FindFirstChildWhichIsA("ClickDetector")
+    if clickDetector then
+        fireclickdetector(clickDetector)
+    end
+end
+
+function moveTo(position)
+    local PathfindingService = game:GetService("PathfindingService")
+    local path = PathfindingService:CreatePath()
+    path:ComputeAsync(humanoidRootPart.Position, position)
+
+    if path.Status == Enum.PathStatus.Success then
+        local waypoints = path:GetWaypoints()
+        for _, waypoint in ipairs(waypoints) do
+            humanoidRootPart.CFrame = CFrame.new(waypoint.Position + Vector3.new(0, 3, 0))
+            wait(0.2)
+        end
+    else
+        -- fallback: just teleport if path failed
+        humanoidRootPart.CFrame = CFrame.new(position + Vector3.new(0, 3, 0))
+    end
+end
+
+function autoEscape()
+    local door = findExitDoor()
+    if door then
+        if not isDoorOpen(door) then
+            openDoor(door)
+            wait(1) -- wait for door to open
+        end
+        local doorPart = door:FindFirstChild("Door") or door:FindFirstChild("Handle")
+        if doorPart then
+            moveTo(doorPart.Position)
+        end
+    end
+end
+
+RunService.Heartbeat:Connect(function()
+    local door = findExitDoor()
+    if door and isDoorOpen(door) then
+        autoEscape()
+    end
+end)
 				
 				
 		end
 	end
 end)
+
