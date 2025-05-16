@@ -1,4 +1,4 @@
-local ver = "v0.3.4" -- loadstring(game:HttpGet("https://raw.githubusercontent.com/LeviTheOtaku/roblox-scripts/main/FTFHAX.lua",true))()
+local ver = "v0.3.5" -- loadstring(game:HttpGet("https://raw.githubusercontent.com/LeviTheOtaku/roblox-scripts/main/FTFHAX.lua",true))()
 
 local FTFHAX = Instance.new("ScreenGui")
 local MenusTabFrame = Instance.new("Frame")
@@ -865,93 +865,117 @@ end
 
 
 function reloadBeastCam()
-    ViewportFrame:ClearAllChildren()
-    if beastcamtoggle and game.ReplicatedStorage.CurrentMap.Value ~= nil then
-        local beast = getBeast()
-        if not beast or not beast.Character then return end
+	ViewportFrame:ClearAllChildren()
+	if beastcamtoggle and game.ReplicatedStorage.CurrentMap.Value ~= nil then
+		local beast = getBeast()
+		local cam = Instance.new("Camera", ScreenGui)
+		cam.CameraType = Enum.CameraType.Scriptable
+		cam.FieldOfView = 70
+		local map = game.ReplicatedStorage.CurrentMap.Value
+		local mapclone = map:clone()
+		mapclone.Name = "map"
+		local mcstuff = mapclone:getDescendants()
+		for i=1,#mcstuff do
+			if mcstuff[i].Name == "SingleDoor" or mcstuff[i].Name == "DoubleDoor" or mcstuff[i].ClassName == "Sound" or mcstuff[i].ClassName == "LocalScript" or mcstuff[i].ClassName == "Script" then
+				mcstuff[i]:remove() 
+			end
+		end
 
-        local cam = Instance.new("Camera")
-        cam.CameraType = Enum.CameraType.Scriptable
-        cam.FieldOfView = 70
+		mapclone.Parent = ViewportFrame
+		ViewportFrame.CurrentCamera = cam
 
-        local map = game.ReplicatedStorage.CurrentMap.Value
-        local mapclone = map:Clone()
-        mapclone.Name = "map"
+		spawn(function()
+			repeat
+				wait()
+				if not beastcamtoggle then
+					break
+				end
+				repeat
+					wait()
+				until getBeast().Character ~= nil
+				cam.CFrame = getBeast().Character.Head.CFrame
+				wait()
+			until cam == nil or mapclone == nil or beast ~= getBeast()
+		end)
 
-        -- Remove unnecessary descendants once, right after cloning
-        for _, item in ipairs(mapclone:GetDescendants()) do
-            if item.Name == "SingleDoor" or item.Name == "DoubleDoor" or 
-               item:IsA("Sound") or item:IsA("LocalScript") or item:IsA("Script") then
-                item:Destroy()
-            end
-        end
+		spawn(function()
+			local dummy = Instance.new("Folder", ViewportFrame)
+			dummy.Name = "dummy"
+			dummy.Parent = ViewportFrame
+			local doors = Instance.new("Folder", ViewportFrame)
+			doors.Name = "doors"
+			doors.Parent = ViewportFrame
 
-        mapclone.Parent = ViewportFrame
-        ViewportFrame.CurrentCamera = cam
+			repeat
+				wait()
+				if not beastcamtoggle then
+					break
+				end
+				local doorsstuff = map:GetChildren()
+				for i=1,#doorsstuff do
+					if doorsstuff[i].Name == "SingleDoor" or doorsstuff[i].Name == "DoubleDoor" then
+						local a = doorsstuff[i]:clone()
+						a.Parent = doors
+					end
+				end
 
-        -- Create folders once for players and doors
-        local dummyFolder = Instance.new("Folder", ViewportFrame)
-        dummyFolder.Name = "dummy"
+				local players = game.Players:getChildren()
+				for i=1,#players do
+					if players[i] ~= getBeast() then
+						if players[i].Character ~= nil then
+							players[i].Character.Archivable = true
+							local dummyclone = players[i].Character:clone()
+							local bodyparts = dummyclone:getDescendants()
 
-        local doorsFolder = Instance.new("Folder", ViewportFrame)
-        doorsFolder.Name = "doors"
+							for i=1,#bodyparts do
+								if bodyparts[i].ClassName == "Sound" or bodyparts[i].ClassName == "LocalScript" or bodyparts[i].ClassName == "Script" then
+									bodyparts[i]:remove() 
+								end
+							end
+							
+							
+							dummyclone.Parent = dummy
+							
+						end
+					end
+				end
 
-        -- Cache door clones once
-        for _, door in ipairs(map:GetChildren()) do
-            if door.Name == "SingleDoor" or door.Name == "DoubleDoor" then
-                local doorClone = door:Clone()
-                doorClone.Parent = doorsFolder
-            end
-        end
 
-        -- Table to hold cloned player models to update
-        local playerClones = {}
+				wait(0.3)
 
-        -- Initial clone of players except beast
-        for _, player in ipairs(game.Players:GetPlayers()) do
-            if player ~= beast and player.Character then
-                local clone = player.Character:Clone()
-                for _, part in ipairs(clone:GetDescendants()) do
-                    if part:IsA("Sound") or part:IsA("LocalScript") or part:IsA("Script") then
-                        part:Destroy()
-                    end
-                end
-                clone.Parent = dummyFolder
-                playerClones[player] = clone
-            end
-        end
-
-        -- Update loop
-        spawn(function()
-            while beastcamtoggle and cam and beast and beast.Character do
-                -- Update camera position to beast head
-                if beast.Character:FindFirstChild("Head") then
-                    cam.CFrame = beast.Character.Head.CFrame
-                end
-
-                -- Update player clones to match real players positions
-                for player, clone in pairs(playerClones) do
-                    if player.Character and clone then
-                        clone:SetPrimaryPartCFrame(player.Character.PrimaryPart.CFrame)
-                    else
-                        -- Remove clones for players who left or lost character
-                        if clone then clone:Destroy() end
-                        playerClones[player] = nil
-                    end
-                end
-
-                wait(0.2) -- update less often for better performance
-            end
-
-            -- Cleanup when toggled off
-            if cam then cam:Destroy() end
-            dummyFolder:ClearAllChildren()
-            doorsFolder:ClearAllChildren()
-            mapclone:Destroy()
-        end)
-    end
+				dummy:ClearAllChildren()
+				doors:ClearAllChildren()
+			until cam == nil or mapclone == nil or beast ~= getBeast()
+		end)
+	end
 end
 
+function getBeast()
+	local player = game.Players:GetChildren()
+	for i=1, #player do
+		local character = player[i].Character
+		if player[i]:findFirstChild("TempPlayerStatsModule"):findFirstChild("IsBeast").Value == true or (character ~= nil and character:findFirstChild("BeastPowers")) then
+			return player[i]
+		end
+	end
+end
+
+function getBestPC()
+    local beast = getBeast()
+    local pcs = {}
+
+    local map = game.ReplicatedStorage.CurrentMap.Value
+    if map ~= nil then
+        local mapstuff = map:getChildren()
+        for i=1,#mapstuff do
+            if mapstuff[i].Name == "ComputerTable" then
+                if mapstuff[i].Screen.BrickColor ~= BrickColor.new("Dark green") then
+                    local magnitude = ((mapstuff[i].Screen.Position - beast.Character:findFirstChild("HumanoidRootPart").Position).magnitude)
+                    table.insert(pcs, {magnitude=magnitude, pc=mapstuff[i]})
+                end
+            end
+        end
+    end
 
     table.sort(pcs, function(a, b) return a.magnitude > b.magnitude end)
     return pcs
@@ -1204,4 +1228,3 @@ end)
 		end
 	end
 end)
-
