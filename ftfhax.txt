@@ -1026,25 +1026,22 @@ end)
 
 local neverfailtoggle = true -- make sure this variable is set to true when toggled on
 
-spawn(function() -- Never Fail Hacking
-    local mt = getrawmetatable(game)
-    local old = mt.__namecall
-    setreadonly(mt, false)
-
-    mt.__namecall = newcclosure(function(self, ...)
-        local method = getnamecallmethod()
+-- Never Fail Hacking using hookmetamethod
+spawn(function()
+    local oldnc
+    oldnc = hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
         local args = { ... }
+        local method = getnamecallmethod()
 
-        if method == "FireServer" and tostring(self) == "SetPlayerMinigameResult" and neverfailtoggle then
+        if not checkcaller() and tostring(self) == "RemoteEvent" and method == "FireServer" and args[1] == "SetPlayerMinigameResult" and neverfailtoggle then
             args[2] = true -- force success
-            return old(self, unpack(args))
+            return oldnc(self, unpack(args))
         end
 
-        return old(self, unpack(args))
-    end)
-
-    setreadonly(mt, true)
+        return oldnc(self, unpack(args))
+    end))
 end)
+
 
 
 spawn(function() -- auto interact
