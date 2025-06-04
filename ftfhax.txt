@@ -1,1237 +1,719 @@
-local ver = "v0.3.5" -- loadstring(game:HttpGet("https://raw.githubusercontent.com/LeviTheOtaku/roblox-scripts/main/FTFHAX.lua",true))()
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
 
-local FTFHAX = Instance.new("ScreenGui")
-local MenusTabFrame = Instance.new("Frame")
-local CheatButton = Instance.new("ImageButton")
-local TextLabel = Instance.new("TextLabel")
-local ESPMenuWindow = Instance.new("Frame")
-local Body = Instance.new("Frame")
-local TitleLabel = Instance.new("TextLabel")
-local ButtonsFrame = Instance.new("Frame")
-local BestPCESPButton = Instance.new("TextButton")
-local PCESPButton = Instance.new("TextButton")
-local TbdButton = Instance.new("TextButton")
-local PlayerESPButton = Instance.new("TextButton")
-local PodsESPButton = Instance.new("TextButton")
-local ExitsESPButton = Instance.new("TextButton")
-local UIGridLayout = Instance.new("UIGridLayout")
-local TopBar = Instance.new("Frame")
-local CloseButton = Instance.new("TextButton")
-local BackButton = Instance.new("TextButton")
-local CreditTotalText = Instance.new("TextLabel")
-local PageTitleText = Instance.new("TextLabel")
-local MainMenuWindow = Instance.new("Frame")
-local TopBar_2 = Instance.new("Frame")
-local CloseButton_2 = Instance.new("TextButton")
-local CreditTotalText_2 = Instance.new("TextLabel")
-local PageTitleText_2 = Instance.new("TextLabel")
-local Body_2 = Instance.new("Frame")
-local UIGridLayout_2 = Instance.new("UIGridLayout")
-local ESPButton = Instance.new("ImageButton")
-local BottomText = Instance.new("TextLabel")
-local TempIcon = Instance.new("ImageLabel")
-local ToolsButton = Instance.new("ImageButton")
-local BottomText_2 = Instance.new("TextLabel")
-local TempIcon_2 = Instance.new("ImageLabel")
-local ToolsMenuWindow = Instance.new("Frame")
-local Body_3 = Instance.new("Frame")
-local TitleLabel_2 = Instance.new("TextLabel")
-local ButtonsFrame_2 = Instance.new("Frame")
-local UIGridLayout_3 = Instance.new("UIGridLayout")
-local NeverFailButton = Instance.new("TextButton")
-local AutoPlayButton = Instance.new("TextButton")
-local AutoInteractButton = Instance.new("TextButton")
-local BeastCamButton = Instance.new("TextButton")
-local TopBar_3 = Instance.new("Frame")
-local CloseButton_3 = Instance.new("TextButton")
-local BackButton_2 = Instance.new("TextButton")
-local CreditTotalText_3 = Instance.new("TextLabel")
-local PageTitleText_3 = Instance.new("TextLabel")
-local ViewportFrame = Instance.new("ViewportFrame")
+local GUI = Mercury:Create{
+    Name = "flee the facility Internal v1.1 (soon anothor update)",
+    Size = UDim2.fromOffset(600, 400),
+    Theme = Mercury.Themes.Dark,
+    Link = "Best Flee the facility GUI"
+}
 
-FTFHAX.Name = "CrystalFTF"
-FTFHAX.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+GUI:Notification{
+	Title = "Update:",
+	Text = "Add on discord for suggestions discord: Wrpc",
+	Duration = 5,
+	Callback = function() end
+}
 
-MenusTabFrame.Name = "MenusTabFrame"
-MenusTabFrame.Parent = FTFHAX
-MenusTabFrame.AnchorPoint = Vector2.new(1, 0.5)
-MenusTabFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-MenusTabFrame.BackgroundTransparency = 1.000
-MenusTabFrame.BorderColor3 = Color3.fromRGB(63, 63, 63)
-MenusTabFrame.BorderSizePixel = 0
-MenusTabFrame.Position = UDim2.new(1, 0, 0.5, 0)
-MenusTabFrame.Size = UDim2.new(0.0799999982, 0, 0.159999996, 0)
-MenusTabFrame.SizeConstraint = Enum.SizeConstraint.RelativeYY
+GUI:Credit{
+	Name = "Wrpc",
+	Description = "Made by",
+	V3rm = "Wrpc",
+	Discord = "Wrpc"
+}
 
-CheatButton.Name = "CheatButton"
-CheatButton.Parent = MenusTabFrame
-CheatButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-CheatButton.BackgroundTransparency = 0.500
-CheatButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-CheatButton.BorderSizePixel = 0
-CheatButton.Position = UDim2.new(0, 0, 1, 0)
-CheatButton.Size = UDim2.new(1, 0, 1, 0)
-CheatButton.SizeConstraint = Enum.SizeConstraint.RelativeXX
-CheatButton.Image = "rbxassetid://11570895459"
-CheatButton.ImageColor3 = Color3.fromRGB(223, 223, 223)
+local Tab6 = GUI:Tab{
+	Name = "Player Stuff",
+	Icon = "rbxassetid://8569322835"
+}
 
-TextLabel.Parent = CheatButton
-TextLabel.AnchorPoint = Vector2.new(0, 1)
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.Position = UDim2.new(0, 0, 1, 0)
-TextLabel.Size = UDim2.new(1, 0, 0.200000003, 0)
-TextLabel.Font = Enum.Font.ArialBold
-TextLabel.Text = "CrystalFTF"
-TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.TextScaled = true
-TextLabel.TextSize = 12.000
-TextLabel.TextStrokeTransparency = 0.000
-TextLabel.TextWrapped = true
-TextLabel.TextYAlignment = Enum.TextYAlignment.Bottom
+Tab6:Button{
+	Name = "Respawn",
+	Description = nil,
+	Callback = function()
+local plr = game.Players.LocalPlayer
+plr.Character:Destroy()
+	    end
+}
 
-ESPMenuWindow.Name = "ESPMenuWindow"
-ESPMenuWindow.Parent = FTFHAX
-ESPMenuWindow.AnchorPoint = Vector2.new(0.5, 0.5)
-ESPMenuWindow.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
-ESPMenuWindow.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ESPMenuWindow.BorderSizePixel = 2
-ESPMenuWindow.ClipsDescendants = true
-ESPMenuWindow.Position = UDim2.new(0.5, 0, 0.5, -18)
-ESPMenuWindow.Size = UDim2.new(0, 480, 0, 175)
-ESPMenuWindow.SizeConstraint = Enum.SizeConstraint.RelativeYY
-ESPMenuWindow.Visible = false
+Tab6:Button{
+	Name = "FixCam",
+	Description = nil,
+	Callback = function()
+local player = game.Players.LocalPlayer
 
-Body.Name = "Body"
-Body.Parent = ESPMenuWindow
-Body.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Body.BackgroundTransparency = 1.000
-Body.BorderSizePixel = 0
-Body.Position = UDim2.new(0, 0, 0, 40)
-Body.Size = UDim2.new(1, 0, 1, -40)
+	workspace.CurrentCamera.CameraSubject = player.Character:FindFirstChildWhichIsA('Humanoid')
+	workspace.CurrentCamera.CameraType = "Custom"
+	player.CameraMinZoomDistance = 0.5
+	player.CameraMaxZoomDistance = math.huge
+	player.CameraMode = "Classic"
+	player.Character.Head.Anchored = false
+	    end
+}
 
-TitleLabel.Name = "TitleLabel"
-TitleLabel.Parent = Body
-TitleLabel.AnchorPoint = Vector2.new(0.5, 0)
-TitleLabel.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-TitleLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TitleLabel.BorderSizePixel = 0
-TitleLabel.Position = UDim2.new(0.5, 0, -1.06500006, 150)
-TitleLabel.Size = UDim2.new(1, -10, 0.0235044118, 30)
-TitleLabel.Text = "ESP"
-TitleLabel.TextColor3 = Color3.fromRGB(149, 255, 237)
-TitleLabel.TextScaled = true
-TitleLabel.TextSize = 14.000
-TitleLabel.TextWrapped = true
+Tab6:Slider{
+	Name = "WalkSpeed",
+	Default = 50,
+	Min = 0,
+	Max = 100,
+	Callback = function(value)
+	    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+	    end
+}
 
-ButtonsFrame.Name = "ButtonsFrame"
-ButtonsFrame.Parent = Body
-ButtonsFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ButtonsFrame.BackgroundTransparency = 1.000
-ButtonsFrame.Position = UDim2.new(0, 5, 0, 45)
-ButtonsFrame.Size = UDim2.new(1, -10, -0.00555555569, 85)
+Tab6:Slider{
+	Name = "JumpPower",
+	Default = 50,
+	Min = 0,
+	Max = 100,
+	Callback = function(value)
+	    game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+	    end
+}
 
-BestPCESPButton.Name = "BestPCESPButton"
-BestPCESPButton.Parent = ButtonsFrame
-BestPCESPButton.BackgroundColor3 = Color3.fromRGB(191, 0, 0)
-BestPCESPButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BestPCESPButton.BorderSizePixel = 0
-BestPCESPButton.LayoutOrder = 4
-BestPCESPButton.Size = UDim2.new(0, 200, 0, 50)
-BestPCESPButton.Text = "Best PC"
-BestPCESPButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-BestPCESPButton.TextScaled = true
-BestPCESPButton.TextSize = 14.000
-BestPCESPButton.TextWrapped = true
-
-PCESPButton.Name = "PCESPButton"
-PCESPButton.Parent = ButtonsFrame
-PCESPButton.BackgroundColor3 = Color3.fromRGB(191, 0, 0)
-PCESPButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-PCESPButton.BorderSizePixel = 0
-PCESPButton.Size = UDim2.new(0, 200, 0, 50)
-PCESPButton.Text = "PC"
-PCESPButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-PCESPButton.TextScaled = true
-PCESPButton.TextSize = 14.000
-PCESPButton.TextWrapped = true
-
-TbdButton.Name = "TbdButton"
-TbdButton.Parent = ButtonsFrame
-TbdButton.BackgroundColor3 = Color3.fromRGB(191, 0, 0)
-TbdButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TbdButton.BorderSizePixel = 0
-TbdButton.LayoutOrder = 5
-TbdButton.Size = UDim2.new(0, 200, 0, 50)
-TbdButton.Visible = false
-TbdButton.Text = "nothing"
-TbdButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-TbdButton.TextScaled = true
-TbdButton.TextSize = 14.000
-TbdButton.TextWrapped = true
-
-PlayerESPButton.Name = "PlayerESPButton"
-PlayerESPButton.Parent = ButtonsFrame
-PlayerESPButton.BackgroundColor3 = Color3.fromRGB(191, 0, 0)
-PlayerESPButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-PlayerESPButton.BorderSizePixel = 0
-PlayerESPButton.LayoutOrder = 1
-PlayerESPButton.Size = UDim2.new(0, 200, 0, 50)
-PlayerESPButton.Text = "Player"
-PlayerESPButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-PlayerESPButton.TextScaled = true
-PlayerESPButton.TextSize = 14.000
-PlayerESPButton.TextWrapped = true
-
-PodsESPButton.Name = "PodsESPButton"
-PodsESPButton.Parent = ButtonsFrame
-PodsESPButton.BackgroundColor3 = Color3.fromRGB(191, 0, 0)
-PodsESPButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-PodsESPButton.BorderSizePixel = 0
-PodsESPButton.LayoutOrder = 2
-PodsESPButton.Size = UDim2.new(0, 200, 0, 50)
-PodsESPButton.Text = "Pods"
-PodsESPButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-PodsESPButton.TextScaled = true
-PodsESPButton.TextSize = 14.000
-PodsESPButton.TextWrapped = true
-
-ExitsESPButton.Name = "ExitsESPButton"
-ExitsESPButton.Parent = ButtonsFrame
-ExitsESPButton.BackgroundColor3 = Color3.fromRGB(191, 0, 0)
-ExitsESPButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ExitsESPButton.BorderSizePixel = 0
-ExitsESPButton.LayoutOrder = 3
-ExitsESPButton.Size = UDim2.new(0, 200, 0, 50)
-ExitsESPButton.Text = "Exits"
-ExitsESPButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-ExitsESPButton.TextScaled = true
-ExitsESPButton.TextSize = 14.000
-ExitsESPButton.TextWrapped = true
-
-UIGridLayout.Parent = ButtonsFrame
-UIGridLayout.FillDirection = Enum.FillDirection.Vertical
-UIGridLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
-UIGridLayout.CellPadding = UDim2.new(0, 6, 0, 6)
-UIGridLayout.CellSize = UDim2.new(0, 152, 0, 39)
-
-TopBar.Name = "TopBar"
-TopBar.Parent = ESPMenuWindow
-TopBar.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-TopBar.BorderSizePixel = 0
-TopBar.Size = UDim2.new(1, 0, 0, 40)
-TopBar.ZIndex = 5
-
-CloseButton.Name = "CloseButton"
-CloseButton.Parent = TopBar
-CloseButton.AnchorPoint = Vector2.new(1, 0)
-CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-CloseButton.BorderColor3 = Color3.fromRGB(191, 191, 191)
-CloseButton.BorderSizePixel = 0
-CloseButton.Position = UDim2.new(1, -1, 0, 1)
-CloseButton.Size = UDim2.new(0, 36, 0, 36)
-CloseButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
-CloseButton.ZIndex = 5
-CloseButton.Modal = true
-CloseButton.Text = "X"
-CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-CloseButton.TextScaled = true
-CloseButton.TextSize = 14.000
-CloseButton.TextWrapped = true
-
-BackButton.Name = "BackButton"
-BackButton.Parent = TopBar
-BackButton.AnchorPoint = Vector2.new(1, 0)
-BackButton.BackgroundColor3 = Color3.fromRGB(95, 95, 95)
-BackButton.BorderColor3 = Color3.fromRGB(191, 191, 191)
-BackButton.BorderSizePixel = 0
-BackButton.Position = UDim2.new(1, -41, 0, 1)
-BackButton.Size = UDim2.new(1, -4, 1, -4)
-BackButton.SizeConstraint = Enum.SizeConstraint.RelativeYY
-BackButton.ZIndex = 5
-BackButton.Text = "<"
-BackButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-BackButton.TextScaled = true
-BackButton.TextSize = 14.000
-BackButton.TextWrapped = true
-
-CreditTotalText.Name = "CreditTotalText"
-CreditTotalText.Parent = TopBar
-CreditTotalText.AnchorPoint = Vector2.new(1, 0)
-CreditTotalText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-CreditTotalText.BackgroundTransparency = 1.000
-CreditTotalText.BorderSizePixel = 0
-CreditTotalText.Position = UDim2.new(1, -111, 0, 0)
-CreditTotalText.Size = UDim2.new(0, 120, 1, 0)
-CreditTotalText.ZIndex = 5
-CreditTotalText.Text = ver
-CreditTotalText.TextColor3 = Color3.fromRGB(255, 255, 0)
-CreditTotalText.TextScaled = true
-CreditTotalText.TextSize = 34.000
-CreditTotalText.TextWrapped = true
-CreditTotalText.TextXAlignment = Enum.TextXAlignment.Right
-
-PageTitleText.Name = "PageTitleText"
-PageTitleText.Parent = TopBar
-PageTitleText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-PageTitleText.BackgroundTransparency = 1.000
-PageTitleText.BorderSizePixel = 0
-PageTitleText.Position = UDim2.new(0, 10, 0, 0)
-PageTitleText.Size = UDim2.new(0.5, 0, 0, 40)
-PageTitleText.ZIndex = 5
-PageTitleText.Text = "CrystalFTF"
-PageTitleText.TextColor3 = Color3.fromRGB(255, 255, 255)
-PageTitleText.TextScaled = true
-PageTitleText.TextSize = 34.000
-PageTitleText.TextWrapped = true
-PageTitleText.TextXAlignment = Enum.TextXAlignment.Left
-
-MainMenuWindow.Name = "MainMenuWindow"
-MainMenuWindow.Parent = FTFHAX
-MainMenuWindow.AnchorPoint = Vector2.new(0.5, 0.5)
-MainMenuWindow.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
-MainMenuWindow.BorderColor3 = Color3.fromRGB(0, 0, 0)
-MainMenuWindow.BorderSizePixel = 2
-MainMenuWindow.ClipsDescendants = true
-MainMenuWindow.Position = UDim2.new(0.5, 0, 0.5, -18)
-MainMenuWindow.Size = UDim2.new(0, 420, 0, 320)
-MainMenuWindow.SizeConstraint = Enum.SizeConstraint.RelativeYY
-MainMenuWindow.Visible = false
-
-TopBar_2.Name = "TopBar"
-TopBar_2.Parent = MainMenuWindow
-TopBar_2.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-TopBar_2.BorderSizePixel = 0
-TopBar_2.Size = UDim2.new(1, 0, 0, 40)
-TopBar_2.ZIndex = 5
-
-CloseButton_2.Name = "CloseButton"
-CloseButton_2.Parent = TopBar_2
-CloseButton_2.AnchorPoint = Vector2.new(1, 0)
-CloseButton_2.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-CloseButton_2.BorderColor3 = Color3.fromRGB(191, 191, 191)
-CloseButton_2.BorderSizePixel = 0
-CloseButton_2.Position = UDim2.new(1, -1, 0, 1)
-CloseButton_2.Size = UDim2.new(0, 36, 0, 36)
-CloseButton_2.SizeConstraint = Enum.SizeConstraint.RelativeYY
-CloseButton_2.ZIndex = 5
-CloseButton_2.Modal = true
-CloseButton_2.Text = "X"
-CloseButton_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-CloseButton_2.TextScaled = true
-CloseButton_2.TextSize = 14.000
-CloseButton_2.TextWrapped = true
-
-CreditTotalText_2.Name = "CreditTotalText"
-CreditTotalText_2.Parent = TopBar_2
-CreditTotalText_2.AnchorPoint = Vector2.new(1, 0)
-CreditTotalText_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-CreditTotalText_2.BackgroundTransparency = 1.000
-CreditTotalText_2.BorderSizePixel = 0
-CreditTotalText_2.Position = UDim2.new(1, -111, 0, 0)
-CreditTotalText_2.Size = UDim2.new(0, 120, 1, 0)
-CreditTotalText_2.ZIndex = 5
-CreditTotalText_2.Text = ver
-CreditTotalText_2.TextColor3 = Color3.fromRGB(255, 255, 0)
-CreditTotalText_2.TextScaled = true
-CreditTotalText_2.TextSize = 34.000
-CreditTotalText_2.TextWrapped = true
-CreditTotalText_2.TextXAlignment = Enum.TextXAlignment.Right
-
-PageTitleText_2.Name = "PageTitleText"
-PageTitleText_2.Parent = TopBar_2
-PageTitleText_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-PageTitleText_2.BackgroundTransparency = 1.000
-PageTitleText_2.BorderSizePixel = 0
-PageTitleText_2.Position = UDim2.new(0, 10, 0, 0)
-PageTitleText_2.Size = UDim2.new(0.5, 0, 0, 40)
-PageTitleText_2.ZIndex = 5
-PageTitleText_2.Text = "CrystalFTF"
-PageTitleText_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-PageTitleText_2.TextScaled = true
-PageTitleText_2.TextSize = 34.000
-PageTitleText_2.TextWrapped = true
-PageTitleText_2.TextXAlignment = Enum.TextXAlignment.Left
-
-Body_2.Name = "Body"
-Body_2.Parent = MainMenuWindow
-Body_2.AnchorPoint = Vector2.new(0.5, 0)
-Body_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Body_2.BackgroundTransparency = 1.000
-Body_2.BorderSizePixel = 0
-Body_2.Position = UDim2.new(0.5, 0, 0, 45)
-Body_2.Size = UDim2.new(1, -10, 1, -50)
-
-UIGridLayout_2.Parent = Body_2
-UIGridLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
-UIGridLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
-UIGridLayout_2.VerticalAlignment = Enum.VerticalAlignment.Center
-UIGridLayout_2.CellSize = UDim2.new(0, 132, 0, 132)
-
-ESPButton.Name = "ESPButton"
-ESPButton.Parent = Body_2
-ESPButton.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-ESPButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ESPButton.BorderSizePixel = 0
-ESPButton.LayoutOrder = 1
-ESPButton.Size = UDim2.new(0, 100, 0, 100)
-
-BottomText.Name = "BottomText"
-BottomText.Parent = ESPButton
-BottomText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-BottomText.BackgroundTransparency = 1.000
-BottomText.BorderSizePixel = 0
-BottomText.Position = UDim2.new(0, 0, 0.800000012, 0)
-BottomText.Size = UDim2.new(1, 0, 0.200000003, 0)
-BottomText.Text = "ESP"
-BottomText.TextColor3 = Color3.fromRGB(255, 255, 255)
-BottomText.TextScaled = true
-BottomText.TextSize = 14.000
-BottomText.TextWrapped = true
-
-TempIcon.Name = "TempIcon"
-TempIcon.Parent = ESPButton
-TempIcon.AnchorPoint = Vector2.new(0.5, 0)
-TempIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TempIcon.BackgroundTransparency = 1.000
-TempIcon.Position = UDim2.new(0.5, 0, 0, 0)
-TempIcon.Size = UDim2.new(0.800000012, 0, 0.800000012, 0)
-TempIcon.Image = "rbxassetid://2594274683"
-
-ToolsButton.Name = "ToolsButton"
-ToolsButton.Parent = Body_2
-ToolsButton.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-ToolsButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ToolsButton.BorderSizePixel = 0
-ToolsButton.LayoutOrder = 2
-ToolsButton.Size = UDim2.new(0, 100, 0, 100)
-
-BottomText_2.Name = "BottomText"
-BottomText_2.Parent = ToolsButton
-BottomText_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-BottomText_2.BackgroundTransparency = 1.000
-BottomText_2.BorderSizePixel = 0
-BottomText_2.Position = UDim2.new(0, 0, 0.800000012, 0)
-BottomText_2.Size = UDim2.new(1, 0, 0.200000003, 0)
-BottomText_2.Text = "Tools"
-BottomText_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-BottomText_2.TextScaled = true
-BottomText_2.TextSize = 14.000
-BottomText_2.TextWrapped = true
-
-TempIcon_2.Name = "TempIcon"
-TempIcon_2.Parent = ToolsButton
-TempIcon_2.AnchorPoint = Vector2.new(0.5, 0)
-TempIcon_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TempIcon_2.BackgroundTransparency = 1.000
-TempIcon_2.Position = UDim2.new(0.5, 0, 0, 0)
-TempIcon_2.Size = UDim2.new(0.800000012, 0, 0.800000012, 0)
-TempIcon_2.Image = "rbxassetid://12403104094"
-
-ToolsMenuWindow.Name = "ToolsMenuWindow"
-ToolsMenuWindow.Parent = FTFHAX
-ToolsMenuWindow.AnchorPoint = Vector2.new(0.5, 0.5)
-ToolsMenuWindow.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
-ToolsMenuWindow.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ToolsMenuWindow.BorderSizePixel = 2
-ToolsMenuWindow.ClipsDescendants = true
-ToolsMenuWindow.Position = UDim2.new(0.5, 0, 0.5, -18)
-ToolsMenuWindow.Size = UDim2.new(0, 480, 0, 175)
-ToolsMenuWindow.SizeConstraint = Enum.SizeConstraint.RelativeYY
-ToolsMenuWindow.Visible = false
-
-Body_3.Name = "Body"
-Body_3.Parent = ToolsMenuWindow
-Body_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Body_3.BackgroundTransparency = 1.000
-Body_3.BorderSizePixel = 0
-Body_3.Position = UDim2.new(0, 0, 0, 40)
-Body_3.Size = UDim2.new(1, 0, 1, -40)
-
-TitleLabel_2.Name = "TitleLabel"
-TitleLabel_2.Parent = Body_3
-TitleLabel_2.AnchorPoint = Vector2.new(0.5, 0)
-TitleLabel_2.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-TitleLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TitleLabel_2.BorderSizePixel = 0
-TitleLabel_2.Position = UDim2.new(0.5, 0, -1.06500006, 150)
-TitleLabel_2.Size = UDim2.new(1, -10, 0.0235044118, 30)
-TitleLabel_2.Text = "Tools"
-TitleLabel_2.TextColor3 = Color3.fromRGB(144, 255, 161)
-TitleLabel_2.TextScaled = true
-TitleLabel_2.TextSize = 14.000
-TitleLabel_2.TextWrapped = true
-
-ButtonsFrame_2.Name = "ButtonsFrame"
-ButtonsFrame_2.Parent = Body_3
-ButtonsFrame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ButtonsFrame_2.BackgroundTransparency = 1.000
-ButtonsFrame_2.Position = UDim2.new(0, 5, 0, 45)
-ButtonsFrame_2.Size = UDim2.new(1, -10, -0.00555555569, 85)
-
-UIGridLayout_3.Parent = ButtonsFrame_2
-UIGridLayout_3.FillDirection = Enum.FillDirection.Vertical
-UIGridLayout_3.HorizontalAlignment = Enum.HorizontalAlignment.Center
-UIGridLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
-UIGridLayout_3.CellPadding = UDim2.new(0, 6, 0, 6)
-UIGridLayout_3.CellSize = UDim2.new(0, 152, 0, 39)
-
-NeverFailButton.Name = "NeverFailButton"
-NeverFailButton.Parent = ButtonsFrame_2
-NeverFailButton.BackgroundColor3 = Color3.fromRGB(191, 0, 0)
-NeverFailButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-NeverFailButton.BorderSizePixel = 0
-NeverFailButton.Size = UDim2.new(0, 200, 0, 50)
-NeverFailButton.Text = "Never Fail"
-NeverFailButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-NeverFailButton.TextScaled = true
-NeverFailButton.TextSize = 14.000
-NeverFailButton.TextWrapped = true
-
-AutoPlayButton.Name = "AutoPlayButton"
-AutoPlayButton.Parent = ButtonsFrame_2
-AutoPlayButton.BackgroundColor3 = Color3.fromRGB(191, 0, 0)
-AutoPlayButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-AutoPlayButton.BorderSizePixel = 0
-AutoPlayButton.LayoutOrder = 1
-AutoPlayButton.Size = UDim2.new(0, 200, 0, 50)
-AutoPlayButton.Text = "Auto-Play"
-AutoPlayButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-AutoPlayButton.TextScaled = true
-AutoPlayButton.TextSize = 14.000
-AutoPlayButton.TextWrapped = true
-
-AutoInteractButton.Name = "AutoInteractButton"
-AutoInteractButton.Parent = ButtonsFrame_2
-AutoInteractButton.BackgroundColor3 = Color3.fromRGB(191, 0, 0)
-AutoInteractButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-AutoInteractButton.BorderSizePixel = 0
-AutoInteractButton.LayoutOrder = 2
-AutoInteractButton.Size = UDim2.new(0, 200, 0, 50)
-AutoInteractButton.Text = "Auto Interact"
-AutoInteractButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-AutoInteractButton.TextScaled = true
-AutoInteractButton.TextSize = 14.000
-AutoInteractButton.TextWrapped = true
-
-BeastCamButton.Name = "BeastCamButton"
-BeastCamButton.Parent = ButtonsFrame_2
-BeastCamButton.BackgroundColor3 = Color3.fromRGB(191, 0, 0)
-BeastCamButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-BeastCamButton.BorderSizePixel = 0
-BeastCamButton.LayoutOrder = 3
-BeastCamButton.Size = UDim2.new(0, 200, 0, 50)
-BeastCamButton.Text = "Beast Cam"
-BeastCamButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-BeastCamButton.TextScaled = true
-BeastCamButton.TextSize = 14.000
-BeastCamButton.TextWrapped = true
-
-TopBar_3.Name = "TopBar"
-TopBar_3.Parent = ToolsMenuWindow
-TopBar_3.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
-TopBar_3.BorderSizePixel = 0
-TopBar_3.Size = UDim2.new(1, 0, 0, 40)
-TopBar_3.ZIndex = 5
-
-CloseButton_3.Name = "CloseButton"
-CloseButton_3.Parent = TopBar_3
-CloseButton_3.AnchorPoint = Vector2.new(1, 0)
-CloseButton_3.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-CloseButton_3.BorderColor3 = Color3.fromRGB(191, 191, 191)
-CloseButton_3.BorderSizePixel = 0
-CloseButton_3.Position = UDim2.new(1, -1, 0, 1)
-CloseButton_3.Size = UDim2.new(0, 36, 0, 36)
-CloseButton_3.SizeConstraint = Enum.SizeConstraint.RelativeYY
-CloseButton_3.ZIndex = 5
-CloseButton_3.Modal = true
-CloseButton_3.Text = "X"
-CloseButton_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-CloseButton_3.TextScaled = true
-CloseButton_3.TextSize = 14.000
-CloseButton_3.TextWrapped = true
-
-BackButton_2.Name = "BackButton"
-BackButton_2.Parent = TopBar_3
-BackButton_2.AnchorPoint = Vector2.new(1, 0)
-BackButton_2.BackgroundColor3 = Color3.fromRGB(95, 95, 95)
-BackButton_2.BorderColor3 = Color3.fromRGB(191, 191, 191)
-BackButton_2.BorderSizePixel = 0
-BackButton_2.Position = UDim2.new(1, -41, 0, 1)
-BackButton_2.Size = UDim2.new(1, -4, 1, -4)
-BackButton_2.SizeConstraint = Enum.SizeConstraint.RelativeYY
-BackButton_2.ZIndex = 5
-BackButton_2.Text = "<"
-BackButton_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-BackButton_2.TextScaled = true
-BackButton_2.TextSize = 14.000
-BackButton_2.TextWrapped = true
-
-CreditTotalText_3.Name = "CreditTotalText"
-CreditTotalText_3.Parent = TopBar_3
-CreditTotalText_3.AnchorPoint = Vector2.new(1, 0)
-CreditTotalText_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-CreditTotalText_3.BackgroundTransparency = 1.000
-CreditTotalText_3.BorderSizePixel = 0
-CreditTotalText_3.Position = UDim2.new(1, -111, 0, 0)
-CreditTotalText_3.Size = UDim2.new(0, 120, 1, 0)
-CreditTotalText_3.ZIndex = 5
-CreditTotalText_3.Text = ver
-CreditTotalText_3.TextColor3 = Color3.fromRGB(255, 255, 0)
-CreditTotalText_3.TextScaled = true
-CreditTotalText_3.TextSize = 34.000
-CreditTotalText_3.TextWrapped = true
-CreditTotalText_3.TextXAlignment = Enum.TextXAlignment.Right
-
-PageTitleText_3.Name = "PageTitleText"
-PageTitleText_3.Parent = TopBar_3
-PageTitleText_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-PageTitleText_3.BackgroundTransparency = 1.000
-PageTitleText_3.BorderSizePixel = 0
-PageTitleText_3.Position = UDim2.new(0, 10, 0, 0)
-PageTitleText_3.Size = UDim2.new(0.5, 0, 0, 40)
-PageTitleText_3.ZIndex = 5
-PageTitleText_3.Text = "CrystalFTF"
-PageTitleText_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-PageTitleText_3.TextScaled = true
-PageTitleText_3.TextSize = 34.000
-PageTitleText_3.TextWrapped = true
-PageTitleText_3.TextXAlignment = Enum.TextXAlignment.Left
-
-ViewportFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ViewportFrame.Parent = FTFHAX
-ViewportFrame.Position = UDim2.new(0, 5, 0.666000009, -5)
-ViewportFrame.Size = UDim2.new(0.333, 0, 0.333, 0)
-ViewportFrame.Ambient = Color3.fromRGB(147,147,147)
-ViewportFrame.LightDirection = Vector3.new(0,1,0)
-ViewportFrame.BackgroundColor3 = Color3.fromRGB(50,50,50)
-ViewportFrame.BackgroundTransparency = 0.9
-ViewportFrame.Visible = false
-
-
-CheatButton.MouseButton1Down:Connect(function()
-	ESPMenuWindow.Visible = false
-	ToolsMenuWindow.Visible = false
-	MainMenuWindow.Visible = not MainMenuWindow.Visible
+Tab6:Toggle{
+	Name = "HitBox",
+	StartingState = false,
+	Description = nil,
+	Callback = function(state)
+if state == true then
+for i,v in pairs(game.Players:GetChildren()) do
+if v:IsA("Player") and v.Name ~= game.Players.LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size = Vector3.new(6.5,6.5,6.5)
+v.Character.HumanoidRootPart.Transparency = 0.8
 end)
-
-CloseButton_2.MouseButton1Down:Connect(function()
-	MainMenuWindow.Visible = false
+end
+end
+else
+for i,v in pairs(game.Players:GetChildren()) do
+if v:IsA("Player") and v.Name ~= game.Players.LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size = Vector3.new(2,2,1)
+v.Character.HumanoidRootPart.Transparency = 1
 end)
+end
+end
+end
+	    end
+}
 
-CloseButton.MouseButton1Down:Connect(function()
-	ESPMenuWindow.Visible = false
-end)
+local Tab = GUI:Tab{
+	Name = "Visuals",
+	Icon = "rbxassetid://8569322835"
+}
 
-CloseButton_3.MouseButton1Down:Connect(function()
-	ToolsMenuWindow.Visible = false
-end)
-
-BackButton.MouseButton1Down:Connect(function()
-	ESPMenuWindow.Visible = false
-	ToolsMenuWindow.Visible = false
-	MainMenuWindow.Visible = true
-end)
-
-BackButton_2.MouseButton1Down:Connect(function()
-	ESPMenuWindow.Visible = false
-	ToolsMenuWindow.Visible = false
-	MainMenuWindow.Visible = true
-end)
-
-ESPButton.MouseButton1Down:Connect(function()
-	ESPMenuWindow.Visible = true
-	ToolsMenuWindow.Visible = false
-	MainMenuWindow.Visible = false
-end)
-
-ToolsButton.MouseButton1Down:Connect(function()
-	ESPMenuWindow.Visible = false
-	ToolsMenuWindow.Visible = true
-	MainMenuWindow.Visible = false
-end)
-
-
-local podstoggle = false
-local pctoggle = false
-local playertoggle = false
-local bestpctoggle = false
-local exitstoggle = false
-local beastcamtoggle = false
-
-
-local neverfailtoggle = false
-local autointeracttoggle = false
-local autoplaytoggle = false
-
-
-PodsESPButton.MouseButton1Down:Connect(function()
-	if podstoggle == false then
-		podstoggle = true
-		PodsESPButton.BackgroundColor3 = Color3.new(0, 0.74902, 0)
-		reloadESP()
-	else
-		podstoggle = false
-		PodsESPButton.BackgroundColor3 = Color3.new(0.74902, 0, 0)
-		reloadESP()
-	end
-end)
-
-PCESPButton.MouseButton1Down:Connect(function()
-	if pctoggle == false then
-		pctoggle = true
-		PCESPButton.BackgroundColor3 = Color3.new(0, 0.74902, 0)
-		reloadESP()
-	else
-		pctoggle = false
-		PCESPButton.BackgroundColor3 = Color3.new(0.74902, 0, 0)
-		reloadESP()
-	end
-end)
-
-
-PlayerESPButton.MouseButton1Down:Connect(function()
-	if playertoggle == false then
-		playertoggle = true
-		PlayerESPButton.BackgroundColor3 = Color3.new(0, 0.74902, 0)
-		reloadESP()
-	else
-		playertoggle = false
-		PlayerESPButton.BackgroundColor3 = Color3.new(0.74902, 0, 0)
-		reloadESP()
-	end
-end)
-
-
-BestPCESPButton.MouseButton1Down:Connect(function()
-	if bestpctoggle == false then
-		bestpctoggle = true
-		BestPCESPButton.BackgroundColor3 = Color3.new(0, 0.74902, 0)
-		reloadESP()
-	else
-		bestpctoggle = false
-		BestPCESPButton.BackgroundColor3 = Color3.new(0.74902, 0, 0)
-		reloadESP()
-	end
-end)
-
-ExitsESPButton.MouseButton1Down:Connect(function()
-	if exitstoggle == false then
-		exitstoggle = true
-		ExitsESPButton.BackgroundColor3 = Color3.new(0, 0.74902, 0)
-		reloadESP()
-	else
-		exitstoggle = false
-		ExitsESPButton.BackgroundColor3 = Color3.new(0.74902, 0, 0)
-		reloadESP()
-	end
-end)
-
-NeverFailButton.MouseButton1Down:Connect(function()
-	if neverfailtoggle == false then
-		neverfailtoggle = true
-		NeverFailButton.BackgroundColor3 = Color3.new(0, 0.74902, 0)
-	else
-		neverfailtoggle = false
-		NeverFailButton.BackgroundColor3 = Color3.new(0.74902, 0, 0)
-	end
-end)
-
-AutoInteractButton.MouseButton1Down:Connect(function()
-	if autointeracttoggle == false then
-		autointeracttoggle = true
-		AutoInteractButton.BackgroundColor3 = Color3.new(0, 0.74902, 0)
-	else
-		autointeracttoggle = false
-		AutoInteractButton.BackgroundColor3 = Color3.new(0.74902, 0, 0)
-	end
-end)
-
-
-BeastCamButton.MouseButton1Down:Connect(function()
-	if beastcamtoggle == false then
-		beastcamtoggle = true
-		ViewportFrame.Visible = true
-		BeastCamButton.BackgroundColor3 = Color3.new(0, 0.74902, 0)
-		reloadBeastCam()
-	else
-		ViewportFrame:ClearAllChildren()
-		beastcamtoggle = false
-		ViewportFrame.Visible = false
-		BeastCamButton.BackgroundColor3 = Color3.new(0.74902, 0, 0)
-	end
-end)
-
-
-
-AutoPlayButton.MouseButton1Down:Connect(function()
-	if autoplaytoggle == false then
-		autoplaytoggle = true
-		AutoPlayButton.BackgroundColor3 = Color3.new(0, 0.74902, 0)
-	else
-		autoplaytoggle = false
-		AutoPlayButton.BackgroundColor3 = Color3.new(0.74902, 0, 0)
-	end
-end)
-
-function reloadESP()
-	spawn(function()
-		local map = game.ReplicatedStorage.CurrentMap.Value
-		if map ~= nil then
-		local mapstuff = map:getChildren()
-		for i=1,#mapstuff do
-			if mapstuff[i].Name == "ComputerTable" then
-				if mapstuff[i]:findFirstChild("Highlight") and not pctoggle then
-					mapstuff[i].Highlight:remove()
+Tab:Toggle{
+	Name = "Player ESP",
+	StartingState = false,
+	Description = nil,
+	Callback = function(state)
+if state == true then
+	for i,v in pairs(game.Players:GetChildren()) do
+		if v:IsA("Player") and v.Name ~= game.Players.LocalPlayer.Name then
+			pcall(function()
+				local transparency = 0.5
+				local Folder = Instance.new("Folder",v.Character)
+				Folder.Name = v.Name .. "'s ESP"
+				--Head
+				local Head = Instance.new("BoxHandleAdornment",Folder)
+				Head.AlwaysOnTop = true
+				Head.Adornee = v.Character.Head
+				Head.ZIndex = 1
+				Head.Name = "Head"
+				Head.Transparency = transparency
+				Head.Size = v.Character.Head.Size
+				--Torso
+				local Torso = Instance.new("BoxHandleAdornment",Folder)
+				Torso.AlwaysOnTop = true
+				Torso.Adornee = v.Character.Torso
+				Torso.ZIndex = 1
+				Torso.Name = "Torso"
+				Torso.Transparency = transparency
+				Torso.Size = v.Character.Torso.Size
+				--Left Arm
+				local LeftArm = Instance.new("BoxHandleAdornment",Folder)
+				LeftArm.AlwaysOnTop = true
+				LeftArm.Adornee = v.Character["Left Arm"]
+				LeftArm.ZIndex = 1
+				LeftArm.Name = "LeftArm"
+				LeftArm.Transparency = transparency
+				LeftArm.Size = v.Character["Left Arm"].Size
+				--Right Arm
+				local RightArm = Instance.new("BoxHandleAdornment",Folder)
+				RightArm.AlwaysOnTop = true
+				RightArm.Adornee = v.Character["Right Arm"]
+				RightArm.ZIndex = 1
+				RightArm.Name = "RightArm"
+				RightArm.Transparency = transparency
+				RightArm.Size = v.Character["Right Arm"].Size
+				--Right Leg
+				local RightLeg = Instance.new("BoxHandleAdornment",Folder)
+				RightLeg.AlwaysOnTop = true
+				RightLeg.Adornee = v.Character["Right Leg"]
+				RightLeg.ZIndex = 1
+				RightLeg.Name = "RightLeg"
+				RightLeg.Transparency = transparency
+				RightLeg.Size = v.Character["Right Leg"].Size
+				--Left Leg
+				local LeftLeg = Instance.new("BoxHandleAdornment",Folder)
+				LeftLeg.AlwaysOnTop = true
+				LeftLeg.Name = "LeftLeg"
+				LeftLeg.Adornee = v.Character["Left Leg"]
+				LeftLeg.ZIndex = 1
+				LeftLeg.Transparency = transparency
+				LeftLeg.Size = v.Character["Left Leg"].Size
+				--Colors if beast or not
+				getgenv().LoopBeastColor = game.RunService.Stepped:Connect(function()
+				if v.TempPlayerStatsModule.IsBeast.Value == true then
+					Head.Color3 = Color3.fromRGB(205, 98, 152)
+					Torso.Color3 = Color3.fromRGB(205, 98, 152)
+					LeftArm.Color3 = Color3.fromRGB(205, 98, 152)
+					RightArm.Color3 = Color3.fromRGB(205, 98, 152)
+					RightLeg.Color3 = Color3.fromRGB(205, 98, 152)
+					LeftLeg.Color3 = Color3.fromRGB(205, 98, 152)
+				elseif v.TempPlayerStatsModule.IsBeast.Value == false then
+					Head.Color3 = Color3.new(225,1,1)
+					Torso.Color3 = Color3.new(1,1,1)
+					LeftArm.Color3 = Color3.new(1,1,1)
+					RightArm.Color3 = Color3.new(1,1,1)
+					RightLeg.Color3 = Color3.new(1,1,1)
+					LeftLeg.Color3 = Color3.new(1,1,1)
 				end
-				if pctoggle and not mapstuff[i]:findFirstChild("Highlight") then
-					local a = Instance.new("Highlight", mapstuff[i])
-					a.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-					a.FillColor = Color3.fromRGB(13, 105, 172) -- avoid display bugs as soon as loads :)
-					a.OutlineColor = Color3.fromRGB(20, 165, 270) -- avoid display bugs as soon as loads :)
-					spawn(function()
-						repeat 
-							if bestpctoggle and mapstuff[i]:findFirstChild("Screen") then
-								if getBestPC()[1].pc ~= nil and mapstuff[i] == getBestPC()[1].pc then
-									a.FillColor = mapstuff[i]:findFirstChild("Screen").Color
-									a.OutlineColor = Color3.fromRGB(200, 0, 255)
-								else
-									a.FillColor = mapstuff[i]:findFirstChild("Screen").Color
-									a.OutlineColor = Color3.fromRGB(a.FillColor.R*400, a.FillColor.G*400, a.FillColor.B*400)
-								end
-							else
-								a.FillColor = mapstuff[i]:findFirstChild("Screen").Color
-								a.OutlineColor = Color3.fromRGB(a.FillColor.R*400, a.FillColor.G*400, a.FillColor.B*400)
-							end
-							wait(1)
-						until mapstuff[i] == nil or a == nil
-					end)
-				end
-			end
-			if mapstuff[i].Name == "FreezePod" then
-				if mapstuff[i]:findFirstChild("Highlight") and not podstoggle then
-					mapstuff[i].Highlight:remove()
-				end
-				if podstoggle and not mapstuff[i]:findFirstChild("Highlight") then
-					local a = Instance.new("Highlight", mapstuff[i])
-					a.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-					a.FillColor = Color3.fromRGB(120,200,255)
-					a.OutlineColor = Color3.fromRGB(160,255,255)
-				end
-			end
-			if mapstuff[i].Name == "ExitDoor" then
-				if mapstuff[i]:findFirstChild("Highlight") and not exitstoggle then
-					mapstuff[i].Highlight:remove()
-				end
-				if exitstoggle and not mapstuff[i]:findFirstChild("Highlight") then
-					local a = Instance.new("Highlight", mapstuff[i])
-					a.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-					a.FillColor = Color3.fromRGB(252, 255, 100)
-					a.OutlineColor = Color3.fromRGB(255,255,160)
-				end
-			end
-			end
-			end
-	end)
-	local player = game.Players:GetChildren()
-	for i=1, #player do
-		if player[i] ~= game.Players.LocalPlayer and player[i].Character ~= nil then
-		local character = player[i].Character
-		if character:findFirstChild("Highlight") and not playertoggle then
-			character.Highlight:remove()
-		end
-		if playertoggle and not character:findFirstChild("Highlight") then
-			local a = Instance.new("Highlight", character)
-			a.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-			a.FillColor = Color3.fromRGB(0,255,0) -- avoid display bugs as soon as loads :)
-			a.OutlineColor = Color3.fromRGB(127,255,127) -- avoid display bugs as soon as loads :)
-			spawn(function()
-				repeat
-					wait(0.1)
-					if player[i] == getBeast() then
-						a.FillColor = Color3.fromRGB(255,0,0)
-						a.OutlineColor = Color3.fromRGB(255,127,127)
-					else
-						a.FillColor = Color3.fromRGB(0,255,0)
-						a.OutlineColor = Color3.fromRGB(127,255,127)
-					end
-				until character == nil or a == nil
+				end)
+        --[[
+        --BillboardGui
+        local BillboardGui = Instance.new("BillboardGui",Folder)
+        BillboardGui.AlwaysOnTop = true
+        BillboardGui.Enabled = true
+        BillboardGui.Adornee = v.Character.Head
+        BillboardGui.Size = UDim2.new(0,100,0,100)
+        --NameTag
+        local NameTag = Instance.new("TextLabel",BillboardGui)
+        NameTag.BackgroundTransparency = 1
+        NameTag.Size = UDim2.new(0,100,0,10)
+        if v.TempPlayerStatsModule.IsBeast.Value == true then
+        NameTag.TextColor3 = Color3.new(1,0,0)
+        elseif v.TempPlayerStatsModule.IsBeast.Value == false then
+        NameTag.TextColor3 = Color3.new(1,1,1)
+        end
+        NameTag.ZIndex = 10
+        NameTag.Visible = true
+        NameTag.TextSize = 20
+        NameTag.Text = "Name: " .. v.Name
+        ]]
 			end)
-			end
-			end
+		end
 	end
+else
+getgenv().LoopBeastColor:Disconnect()
+for i,v in pairs(game.Players:GetChildren()) do
+    if v:IsA("Player") then
+   for i,e in pairs(v.Character:GetChildren()) do
+   if e:IsA("Folder") then
+       pcall(function()
+       e:Destroy()
+       end)
+end
+end
+end
 end
 
+end
+end
+}
 
-function reloadBeastCam()
-	ViewportFrame:ClearAllChildren()
-	if beastcamtoggle and game.ReplicatedStorage.CurrentMap.Value ~= nil then
-		local beast = getBeast()
-		local cam = Instance.new("Camera", ScreenGui)
-		cam.CameraType = Enum.CameraType.Scriptable
-		cam.FieldOfView = 70
-		local map = game.ReplicatedStorage.CurrentMap.Value
-		local mapclone = map:clone()
-		mapclone.Name = "map"
-		local mcstuff = mapclone:getDescendants()
-		for i=1,#mcstuff do
-			if mcstuff[i].Name == "SingleDoor" or mcstuff[i].Name == "DoubleDoor" or mcstuff[i].ClassName == "Sound" or mcstuff[i].ClassName == "LocalScript" or mcstuff[i].ClassName == "Script" then
-				mcstuff[i]:remove() 
+Tab:Toggle{
+	Name = "Door ESP",
+	StartingState = false,
+	Description = nil,
+	Callback = function(state)
+if state == true then
+getgenv().DoorESP = false
+	spawn(function()
+		--single doors
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v.Name == "SingleDoor" then
+				pcall(function()
+					local ESP = Instance.new("Highlight")
+					ESP.Parent = v.Door
+				end)
+
 			end
 		end
+		wait(1)
 
-		mapclone.Parent = ViewportFrame
-		ViewportFrame.CurrentCamera = cam
-
-		spawn(function()
-			repeat
-				wait()
-				if not beastcamtoggle then
-					break
-				end
-				repeat
-					wait()
-				until getBeast().Character ~= nil
-				cam.CFrame = getBeast().Character.Head.CFrame
-				wait()
-			until cam == nil or mapclone == nil or beast ~= getBeast()
-		end)
-
-		spawn(function()
-			local dummy = Instance.new("Folder", ViewportFrame)
-			dummy.Name = "dummy"
-			dummy.Parent = ViewportFrame
-			local doors = Instance.new("Folder", ViewportFrame)
-			doors.Name = "doors"
-			doors.Parent = ViewportFrame
-
-			repeat
-				wait()
-				if not beastcamtoggle then
-					break
-				end
-				local doorsstuff = map:GetChildren()
-				for i=1,#doorsstuff do
-					if doorsstuff[i].Name == "SingleDoor" or doorsstuff[i].Name == "DoubleDoor" then
-						local a = doorsstuff[i]:clone()
-						a.Parent = doors
-					end
-				end
-
-				local players = game.Players:getChildren()
-				for i=1,#players do
-					if players[i] ~= getBeast() then
-						if players[i].Character ~= nil then
-							players[i].Character.Archivable = true
-							local dummyclone = players[i].Character:clone()
-							local bodyparts = dummyclone:getDescendants()
-
-							for i=1,#bodyparts do
-								if bodyparts[i].ClassName == "Sound" or bodyparts[i].ClassName == "LocalScript" or bodyparts[i].ClassName == "Script" then
-									bodyparts[i]:remove() 
-								end
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v.Name == "SingleDoor" then
+				spawn(function()
+					while true do
+						pcall(function()
+							if v.DoorTrigger.ActionSign.Value == 11 then
+								v.Door.Highlight.FillColor = Color3.new(0,1,0)
+							elseif v.DoorTrigger.ActionSign.Value == 10 then
+								v.Door.Highlight.FillColor = Color3.new(1,0,0)
 							end
-							
-							
-							dummyclone.Parent = dummy
-							
+						end)
+						if getgenv().DoorESP == true then
+						    break;
 						end
+						wait(0.1)
 					end
-				end
+				end)
+				
+				
+			end
+		end
+		
+	end)
+	--double doors
+	spawn(function()
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v.Name == "DoubleDoor" then
+				pcall(function()
+					local ESP = Instance.new("Highlight")
+					ESP.Parent = v
+				end)
 
+			end
+		end
+		wait(1)
 
-				wait(0.3)
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v.Name == "DoubleDoor" then
+				spawn(function()
+					while true do
+						pcall(function()
+							if v.DoorTrigger.ActionSign.Value == 11 then
+								v.Highlight.FillColor = Color3.new(0,1,0)
+							elseif v.DoorTrigger.ActionSign.Value == 10 then
+								v.Highlight.FillColor = Color3.new(1,0,0)
+							end
+						end)
+                        if getgenv().DoorESP == true then
+                             print("Stopped itLop!2")
+                             break;
+                        end
+                        wait(0.1)
+					end
+				end)
+			end
+		end
+	end)
+else
+getgenv().DoorESP = true
+	--signle door
+	for i,v in pairs(workspace:GetDescendants()) do
+		if v.Name == "SingleDoor" then
+			pcall(function()
+				v.Door.Highlight:Destroy()
+			end)
 
-				dummy:ClearAllChildren()
-				doors:ClearAllChildren()
-			until cam == nil or mapclone == nil or beast ~= getBeast()
-		end)
+		end
 	end
-end
 
-function getBeast()
-	local player = game.Players:GetChildren()
-	for i=1, #player do
-		local character = player[i].Character
-		if player[i]:findFirstChild("TempPlayerStatsModule"):findFirstChild("IsBeast").Value == true or (character ~= nil and character:findFirstChild("BeastPowers")) then
-			return player[i]
+	--double doors
+	for i,v in pairs(workspace:GetDescendants()) do
+		if v.Name == "DoubleDoor" then
+			pcall(function()
+				v.Highlight:Destroy()
+			end)
+
 		end
 	end
 end
+    end
+}
 
-function getBestPC()
-    local beast = getBeast()
-    local pcs = {}
+Tab:Toggle{
+	Name = "Computer ESP",
+	StartingState = false,
+	Description = nil,
+	Callback = function(state)
+if state == true then
+getgenv().StopComputerESP = false
+for i,v in pairs(workspace:GetDescendants()) do 
+    if v.Name == "ComputerTable" then
+        pcall(function()
+        local ESP = Instance.new("Highlight",v)
+        end)
+    end
+end
 
-    local map = game.ReplicatedStorage.CurrentMap.Value
-    if map ~= nil then
-        local mapstuff = map:getChildren()
-        for i=1,#mapstuff do
-            if mapstuff[i].Name == "ComputerTable" then
-                if mapstuff[i].Screen.BrickColor ~= BrickColor.new("Dark green") then
-                    local magnitude = ((mapstuff[i].Screen.Position - beast.Character:findFirstChild("HumanoidRootPart").Position).magnitude)
-                    table.insert(pcs, {magnitude=magnitude, pc=mapstuff[i]})
-                end
-            end
+spawn(function()
+while true do
+for i,v in pairs(workspace:GetDescendants()) do
+    if v.Name == "ComputerTable" then
+        if v.Screen.BrickColor == BrickColor.new("Bright blue") then
+            pcall(function()
+          v.Highlight.FillColor = Color3.new(0,0,1)
+            end)
+        elseif v.Screen.BrickColor == BrickColor.new("Dark green") then
+            pcall(function()
+          v.Highlight.FillColor = Color3.new(0,1,0)
+            end)
+        end
+        if getgenv().StopComputerESP == true then
+          print("Stopped itLop!PC")
+          break;
         end
     end
-
-    table.sort(pcs, function(a, b) return a.magnitude > b.magnitude end)
-    return pcs
 end
-
-function isPlayerTyping()
-local hum = game.Players.LocalPlayer.Character:findFirstChildOfClass("Humanoid")
-local anims = hum:GetPlayingAnimationTracks()
-for i=1,#anims do
-if anims[i].Name == "AnimTyping" then
-return true
+wait(1)
 end
-end
-return false
-end
-
-spawn(function() -- reload esp when new map
-	game.ReplicatedStorage.CurrentMap.Changed:Connect(function()
-		wait(5) -- hopefully enough time for map to load ;)
-		reloadESP()
-		if beastcamtoggle then
-		reloadBeastCam()	
-		end
-	end)
 end)
-
-spawn(function() -- reload esp when game becomes active
-	game.ReplicatedStorage.IsGameActive.Changed:Connect(function()
-		reloadESP()
-		if beastcamtoggle then
-		reloadBeastCam()	
-		end
-	end)
-end)
-
-
-
-spawn(function() --reload esp when character loads/deloads
-	game:GetService("Players").PlayerAdded:Connect(function(player)
-		player.CharacterAdded:Connect(function(character)
-			reloadESP()
-		end)
-		player.CharacterRemoved:Connect(function(character)
-			reloadESP()
-		end)
-	end)
-end)
-
-local neverfailtoggle = true -- make sure this variable is set to true when toggled on
-
--- Never Fail Hacking using hookmetamethod
-spawn(function()
-    local oldnc
-    oldnc = hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
-        local args = { ... }
-        local method = getnamecallmethod()
-
-        if not checkcaller() and tostring(self) == "RemoteEvent" and method == "FireServer" and args[1] == "SetPlayerMinigameResult" and neverfailtoggle then
-            args[2] = true -- force success
-            return oldnc(self, unpack(args))
-        end
-
-        return oldnc(self, unpack(args))
-    end))
-end)
-
-
-
-spawn(function() -- auto interact
-	game.Players.LocalPlayer.PlayerGui.ScreenGui.ActionBox:GetPropertyChangedSignal("Visible"):connect(function()
-		if autointeracttoggle then
-			game.ReplicatedStorage.RemoteEvent:FireServer("Input", "Action", true)
-		end	
-end)
-end)
-
-spawn(function() -- auto play (buggy and still testing :))
-	while wait(3) do
-		if autoplaytoggle then	
-			
-
-local beast = getBeast()
-local map = game.ReplicatedStorage.CurrentMap.Value
-local mapstuff = map:getChildren()
-for i=1,#mapstuff do
-if mapstuff[i].Name == "SingleDoor" or mapstuff[i].Name == "DoubleDoor" then
-local doorParts = mapstuff[i]:getDescendants()
-for i=1,#doorParts do
-if doorParts[i].ClassName == "Part" and doorParts[i].Name ~= "Frame" then
-if not doorParts[i]:findFirstChild("PathfindingModifier") then
-local a = Instance.new("PathfindingModifier", doorParts[i])
-a.PassThrough = true
-end
-if doorParts[i].Name == "Frame" then
-local a = Instance.new("PathfindingModifier", doorParts[i])
-a.PassThrough = false
-a.Label = "avoid"
+else
+getgenv().StopComputerESP = true
+for i,v in pairs(workspace:GetDescendants()) do 
+    if v.Name == "ComputerTable" then
+        pcall(function()
+        v.Highlight:Destroy()
+        end)
+    end
 end
 end
-end
-end
-end
-
-
-local pcs = getBestPC()
-local PathfindingService = game:GetService("PathfindingService")
-local Humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
-local Root = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
-local goal = nil
-local agentParams = {
-AgentRadius = 2.4,
-AgentHeight = 2,
-AgentCanJump = true,
-AgentWalkableClimb = 4,
-WaypointSpacing = 2,
-Costs = {
-avoid = 10.0
+	    end
 }
+
+Tab:Toggle{
+	Name = "FreezePod ESP",
+	StartingState = false,
+	Description = nil,
+	Callback = function(state)
+if state == true then
+for i,v in pairs(workspace:GetDescendants()) do 
+    if v.Name == "FreezePod" then
+        pcall(function()
+        local ESP = Instance.new("Highlight",v)
+        end)
+    end
+end
+else
+for i,v in pairs(workspace:GetDescendants()) do 
+    if v.Name == "FreezePod" then
+        pcall(function()
+        v.Highlight:Destroy()
+        end)
+    end
+end
+end
+	    end
 }
 
 
-local beastNearby = ((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - beast.Character:findFirstChild("HumanoidRootPart").Position).magnitude < 50)
-for i, pc in ipairs(pcs) do
-if beastNearby then
-print("beast nearby")
-end
 
-
-if isPlayerTyping() and not beastNearby then
-break
-end
-				
-				
-goal = pc.pc["ComputerTrigger1"].Position
-local goalpc = pc.pc
-local path = PathfindingService:CreatePath(agentParams)
-
-path:ComputeAsync(Root.Position, goal)
-print(path.Status)
-if path.Status == Enum.PathStatus.Success then
-local waypoints = path:GetWaypoints()
-for i, waypoint in ipairs(waypoints) do
-
-local ray = Ray.new(waypoints[i].Position, Vector3.new(0, 1, 0) * 3)
-local part = workspace:FindPartOnRay(ray)
-if part and part.CanCollide then
-local humanoid = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
-print("need to crouch :)")
-end
-
-
-
-Humanoid:MoveTo(waypoint.Position)
-if waypoint.Action == Enum.PathWaypointAction.Jump then
-Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-end
-
-local a = Instance.new("Part", workspace)
-a.Shape = Enum.PartType.Ball
-a.Position = waypoint.Position
-a.BrickColor = BrickColor.new("Pink")
-a.Material = Enum.Material.Neon
-a.Size = Vector3.new(2,2,2)
-a.Anchored = true
-a.CanCollide = false
-local touch = false
-
-spawn(function()
-a.Touched:Connect(function(hit)
-if hit.Parent:FindFirstChild("Humanoid") then
-if hit.Parent.Name == game.Players.LocalPlayer.Character.Name then
-touch = true
-a:remove()
-end
+local Tab2 = GUI:Tab{
+	Name = "Beast",
+	Icon = "rbxassetid://8569322835"
+}
+Tab2:Button{
+	Name = "Inf Stamina",
+	Description = nil,
+	Callback = function()
+if game.Players.LocalPlayer.TempPlayerStatsModule.IsBeast.Value == true then
+game.UserInputService.InputBegan:Connect(function(key)
+if key.KeyCode == Enum.KeyCode.Q then
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 30
 end
 end)
-wait(10)
-a:remove()
+
+game.UserInputService.InputEnded:Connect(function(key)
+if key.KeyCode == Enum.KeyCode.Q then
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end
 end)
-repeat
-wait(0.05)
-until touch
+
+pcall(function()
+game.Players.LocalPlayer.Character.PowersLocalScript:Destroy()    
+end)
+else
+GUI:Notification{
+	Title = "Alert!",
+	Text = "Your not the beast >:((",
+	Duration = 5,
+	Callback = function() end
+}
 end
-break
+	    end
+}
+
+Tab2:Button{
+	Name = "No Slow",
+	Description = nil,
+	Callback = function()
+if game.Players.LocalPlayer.TempPlayerStatsModule.IsBeast.Value == true then
+pcall(function()
+game.Players.LocalPlayer.Character.PowersLocalScript:Destroy()
+end)
+else
+GUI:Notification{
+	Title = "Alert!",
+	Text = "Your not the beast >:((",
+	Duration = 5,
+	Callback = function() end
+}
+end
+	end
+}
+
+Tab2:Button{
+	Name = "Enable Crawl",
+	Description = nil,
+	Callback = function()
+if game.Players.LocalPlayer.TempPlayerStatsModule.IsBeast.Value == true then
+game:GetService("Players").LocalPlayer.TempPlayerStatsModule.DisableCrawl.Value = false
+else
+GUI:Notification{
+	Title = "Alert!",
+	Text = "Your not the beast >:((",
+	Duration = 5,
+	Callback = function() end
+}
+end
+	end
+}
+
+Tab2:Button{
+	Name = "Remove Sounds and Glow",
+	Description = nil,
+	Callback = function()
+if game.Players.LocalPlayer.TempPlayerStatsModule.IsBeast.Value == true then
+for i,v in pairs(game.Players.LocalPlayer.Character.Hammer.Handle:GetChildren()) do
+    if v:IsA("Sound") then
+        pcall(function()
+        v:Destroy()
+        end)
+    end
+end
+
+pcall(function()
+game.Players.LocalPlayer.Character.Gemstone.Handle.PointLight:Destroy()
+end)
+else
+GUI:Notification{
+	Title = "Alert!",
+	Text = "Your not the beast >:((",
+	Duration = 5,
+	Callback = function() end
+}
 end
 end
-				
-local RunService = game:GetService("RunService")
+}
+
+Tab2:Button{
+	Name = "Bug Game Forever",
+	Description = nil,
+	Callback = function()
+if game.Players.LocalPlayer.TempPlayerStatsModule.IsBeast.Value == true then
+game.Players.LocalPlayer.Character:Destroy()
+else
+GUI:Notification{
+	Title = "Alert!",
+	Text = "Your not the beast >:((",
+	Duration = 5,
+	Callback = function() end
+}
+end
+	end
+}
+
+Tab2:Toggle{
+	Name = "Auto tie",
+	StartingState = false,
+	Description = nil,
+	Callback = function(state)
+if state == true then
+if game.Players.LocalPlayer.TempPlayerStatsModule.IsBeast.Value == true then
+getgenv().StopTheShit = false
+while wait() do
+if game:GetService("Players").LocalPlayer.TempPlayerStatsModule.IsBeast.Value == true then
 local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local lp = Players.LocalPlayer
 
-function findExitDoor()
-    for _, door in pairs(workspace:GetDescendants()) do
-        if door.Name == "ExitDoor" and door:IsA("Model") then
-            return door
-        end
-    end
-    return nil
+local function GetClosestPlayer()
+   local target = nil
+   local distance = math.huge
+ 
+   for i,v in next, Players:GetPlayers() do
+       if v and v ~= lp and v.Character and v.Character:FindFirstChildOfClass('Humanoid') and v.Character:FindFirstChildOfClass('Humanoid').RootPart then
+           local plrdist = lp:DistanceFromCharacter(v.Character:FindFirstChildOfClass('Humanoid').RootPart.CFrame.p)
+           if plrdist < distance then
+               target = v
+               distance = plrdist
+           end
+       end
+   end
+ 
+   return target
 end
 
-function isDoorOpen(door)
-    local hinge = door:FindFirstChild("Hinge")
-    if hinge and hinge:IsA("Motor6D") then
-        return hinge.CurrentAngle > 0.1 -- adjust threshold if needed
-    end
-    return false
+print(GetClosestPlayer().Name)
+local args = {
+    [1] = "HammerTieUp",
+    [2] = GetClosestPlayer().Character.Torso,
+    [3] = GetClosestPlayer().Character.HumanoidRootPart.Position
+}
+
+game:GetService("Players").LocalPlayer.Character.Hammer.HammerEvent:FireServer(unpack(args))
 end
-
-function openDoor(door)
-    local clickDetector = door:FindFirstChildWhichIsA("ClickDetector")
-    if clickDetector then
-        fireclickdetector(clickDetector)
-    end
+if getgenv().StopTheShit == true then
+    break;
 end
-
-function moveTo(position)
-    local PathfindingService = game:GetService("PathfindingService")
-    local path = PathfindingService:CreatePath()
-    path:ComputeAsync(humanoidRootPart.Position, position)
-
-    if path.Status == Enum.PathStatus.Success then
-        local waypoints = path:GetWaypoints()
-        for _, waypoint in ipairs(waypoints) do
-            humanoidRootPart.CFrame = CFrame.new(waypoint.Position + Vector3.new(0, 3, 0))
-            wait(0.2)
-        end
-    else
-        -- fallback: just teleport if path failed
-        humanoidRootPart.CFrame = CFrame.new(position + Vector3.new(0, 3, 0))
-    end
 end
-
-function autoEscape()
-    local door = findExitDoor()
-    if door then
-        if not isDoorOpen(door) then
-            openDoor(door)
-            wait(1) -- wait for door to open
-        end
-        local doorPart = door:FindFirstChild("Door") or door:FindFirstChild("Handle")
-        if doorPart then
-            moveTo(doorPart.Position)
-        end
-    end
+else
+GUI:Notification{
+	Title = "Alert!",
+	Text = "Your not the beast>:(",
+	Duration = 3,
+	Callback = function() end
+}
 end
+else
+getgenv().StopTheShit = true
+end
+	    end
+}
 
-RunService.Heartbeat:Connect(function()
-    local door = findExitDoor()
-    if door and isDoorOpen(door) then
-        autoEscape()
-    end
+local Tab3 = GUI:Tab{
+	Name = "Non Beast",
+	Icon = "rbxassetid://8569322835"
+}
+Tab3:Button{
+	Name = "Q to sprint forever",
+	Description = nil,
+	Callback = function()
+game.UserInputService.InputBegan:Connect(function(key)
+if key.KeyCode == Enum.KeyCode.Q then
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 30
+end
 end)
-				
-				
-		end
-	end
+
+game.UserInputService.InputEnded:Connect(function(key)
+if key.KeyCode == Enum.KeyCode.Q then
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end
 end)
+
+pcall(function()
+game.Players.LocalPlayer.Character.PowersLocalScript:Destroy()    
+end)
+	    end
+}
+
+Tab3:Button{
+	Name = "No error on hack",
+	Description = nil,
+	Callback = function()
+spawn(function()
+while wait() do
+game.ReplicatedStorage.RemoteEvent:FireServer("SetPlayerMinigameResult",true)
+end
+end)
+	    end
+}
+
+local Tab5 = GUI:Tab{
+	Name = "Misc",
+	Icon = "rbxassetid://8569322835"
+}
+
+Tab5:Button{
+	Name = "Close trade GUI",
+	Description = nil,
+	Callback = function()
+if game.PlaceId == 1738581510 then
+	    game:GetService("Players").LocalPlayer.PlayerGui.MenusScreenGui.TradingMenuWindow.Visible = false
+
+GUI:Notification{
+	Title = "Alert!",
+	Text = "Visual scam wont work if u close the gui while doing the visual scam.",
+	Duration = 5,
+	Callback = function() end
+}
+else
+GUI:Notification{
+	Title = "Alert!",
+	Text = "Your not in the trading server Join it!! >:(",
+	Duration = 3,
+	Callback = function() end
+}
+end
+	    end
+}
+
+Tab5:Button{
+	Name = "Visual Scam",
+	Description = nil,
+	Callback = function()
+if game.PlaceId == 1738581510 then
+firesignal(game:GetService("Players").LocalPlayer.PlayerGui.MenusScreenGui.TradingMenuWindow.TopBar.CloseButton.MouseButton1Click)
+wait(3)
+game:GetService("Players").LocalPlayer.PlayerGui.MenusScreenGui.TradingMenuWindow.Visible = true
+else
+GUI:Notification{
+	Title = "Alert!",
+	Text = "Your not in the trading server Join it!! >:(",
+	Duration = 3,
+	Callback = function() end
+}
+end
+	    end
+}
+
+Tab5:Textbox{
+	Name = "Send trade",
+	Callback = function(text)
+local args = {
+    [1] = "SendTradeRequest",
+    [2] = game.Players[text].UserId
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+     end
+}
+
+Tab5:Button{
+	Name = "Inf Credits (Only works on Bundles)",
+	Description = nil,
+	Callback = function()
+	    print("This only works on bundles")
+while wait() do
+game:GetService("Players").LocalPlayer.SavedPlayerStatsModule.Credits.Value = 10000000000
+end
+	    end
+}
+
+local MyDropdown = Tab5:Dropdown{
+	Name = "Buy unavailable bundles (go to shop to buy it)",
+	StartingText = "Select...",
+	Description = nil,
+	Items = {
+		{"2ndAniversaryBundle (Rarest)",1},
+		{"AnniversaryClassicBundle",2},	
+		{"SpookySweetsBundle",3}
+	},
+	Callback = function(item)
+if item == 1 then
+game:GetService("Players").LocalPlayer.PlayerGui.MenusScreenGui.ShopMenuWindow.Body.SideBarTabsFrame.BuyBundleButton2.LocalScript.Enabled = true
+game:GetService("Players").LocalPlayer.PlayerGui.MenusScreenGui.ShopMenuWindow.Body.SideBarTabsFrame.BuyBundleButton2.Visible = true
+
+local hi = require(game:GetService("ReplicatedStorage").DeveloperProductIds);
+
+hi["RedNutcrackerBundle"] = 592709755
+elseif item == 2 then
+game:GetService("Players").LocalPlayer.PlayerGui.MenusScreenGui.ShopMenuWindow.Body.SideBarTabsFrame.BuyBundleButton2.LocalScript.Enabled = true
+game:GetService("Players").LocalPlayer.PlayerGui.MenusScreenGui.ShopMenuWindow.Body.SideBarTabsFrame.BuyBundleButton2.Visible = true
+
+local hi = require(game:GetService("ReplicatedStorage").DeveloperProductIds);
+
+hi["RedNutcrackerBundle"] = 307455363
+elseif item == 3 then
+game:GetService("Players").LocalPlayer.PlayerGui.MenusScreenGui.ShopMenuWindow.Body.SideBarTabsFrame.BuyBundleButton2.LocalScript.Enabled = true
+game:GetService("Players").LocalPlayer.PlayerGui.MenusScreenGui.ShopMenuWindow.Body.SideBarTabsFrame.BuyBundleButton2.Visible = true
+
+local hi = require(game:GetService("ReplicatedStorage").DeveloperProductIds);
+
+hi["RedNutcrackerBundle"] = 1111394671
+end
+	    return
+	    end
+}
