@@ -1,5 +1,5 @@
 if game.PlaceId ~= 893973440 then
-    game.Players.LocalPlayer:Kick("Game unsupported. Join our Discord for support: https://discord.gg/GDMva9YB")
+    game.Players.LocalPlayer:Kick("Game unsupported. Join our Discord for support: https://discord.gg/g9z39Cv7qM")
     return
 end
 
